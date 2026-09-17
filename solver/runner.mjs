@@ -1,7 +1,7 @@
-import createConjure from "./conjure.mjs";
+import createConjure from "./conjure.mjs?v=minion-sat-1";
 
 // Also used by the Node smoke tests, so they exercise the website's actual solver boundary.
-export async function runModel(source, limit = 20, onStage = () => {}) {
+export async function runModel(source, limit = 20, onStage = () => {}, solver) {
   const started = performance.now();
   let diagnostics = "";
   const capture = line => { diagnostics = (diagnostics + line + "\n").slice(-16000); };
@@ -9,13 +9,13 @@ export async function runModel(source, limit = 20, onStage = () => {}) {
     onStage("loading");
     const engine = await createConjure({
       noInitialRun: true,
-      locateFile: name => new URL(name, import.meta.url).href,
+      locateFile: name => new URL(name, import.meta.url).href + "?v=minion-sat-1",
       print: capture,
       printErr: capture,
     });
     engine.FS.writeFile("/model.essence", source);
     onStage("solving");
-    engine.callMain(["/model.essence", String(limit)]);
+    engine.callMain(["/model.essence", String(limit), ...(solver === undefined ? [] : [solver])]);
     const result = JSON.parse(engine.FS.readFile("/result.json", { encoding: "utf8" }));
     return { result, elapsedMs: performance.now() - started };
   } catch (error) {

@@ -1,0 +1,5 @@
+This demo includes Minion, distributed under the Mozilla Public License 2.0.
+See LICENSE.txt. The corresponding Minion source is included at
+minion-source.tar.gz alongside this file.
+Minion revision: 81bb27b3cb1b438e8639f8173e775748ec934a17.
+Conjure Oxide: https://github.com/conjure-cp/conjure-oxide
