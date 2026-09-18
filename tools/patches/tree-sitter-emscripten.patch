@@ -1,0 +1,7 @@
+--- a/binding_rust/build.rs
++++ b/binding_rust/build.rs
+@@ -31,3 +31,3 @@
+-    if target.starts_with("wasm32-unknown") {
++    if target == "wasm32-unknown-unknown" {
+         configure_wasm_build(&mut config);
+     }

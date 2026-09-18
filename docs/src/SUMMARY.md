@@ -40,6 +40,8 @@
 
 # Developer's Guide
 
+- [Experimental Emscripten Builds](developers-guide/wasm.md)
+
 - [Project Overview]()
   - [General Structure]()
   - [Main Concepts]()
